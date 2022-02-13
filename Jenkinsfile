@@ -16,6 +16,15 @@ pipeline{
                 sh "docker push nagesh143/nodeapp:${DOCKER_TAG}"
             }
         }
+              stage('Deploy to k8s'){
+            steps{
+                
+                sh "chmod +x changeTag.sh"
+                sh "./changeTag.sh ${DOCKER_TAG}"
+                sshagent(['k8-eks']) {
+                       sh "scp -o StrictHostKeyChecking=no services.yml node-app-pod.yml ec2-user@ 172.31.5.160:/home/ec2-user/"
+                  }
+        }
     }
 }
 }
