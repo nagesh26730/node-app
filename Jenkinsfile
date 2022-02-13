@@ -9,6 +9,13 @@ pipeline{
                 sh "docker build . -t nagesh143/nodeapp:${DOCKER_TAG}"
             }
         }
+         stage('Docker push images'){
+            steps{
+                withCredentials([string(credentialsId: 'docker-pwd', variable: 'DockerHubPwd')]) {
+                sh "docker login -u nagesh143 -p ${DockerHubPwd}"
+                sh "docker push nagesh143/nodeapp:${DOCKER_TAG}"
+            }
+        }
     }
 }
 
