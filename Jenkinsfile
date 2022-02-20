@@ -16,7 +16,7 @@ pipeline{
            }
     }
 }
-
+}
 def getversionTag(){
  def tag = sh script: 'git rev-parse HEAD', retirnStdout: true
  return tag
