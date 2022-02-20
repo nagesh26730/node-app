@@ -26,9 +26,9 @@ pipeline{
                     script{
                         try{
                             
-                           sh " ssh ec2-user:3.110.104.28:/home/ec2-user kubectl apply -f ."
+                           sh "ssh ec2-user:3.110.104.28:/home/ec2-user kubectl apply -f ."
                         }catch(error){
-                            sh " ssh ec2-user:3.110.104.28:/home/ec2-user kubectl create -f ."
+                            sh "ssh ec2-user:3.110.104.28:/home/ec2-user kubectl create -f ."
                         }
                     }
                  }
