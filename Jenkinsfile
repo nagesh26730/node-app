@@ -12,7 +12,7 @@ pipeline{
         stage('Docker image push to Docker hub'){
             steps{
             withCredentials([string(credentialsId:'docker-pwd', variable: 'Docker_pwd')]) {
-               sh "docker login -u nagesh143 p ${Docker_pwd}"
+               sh "docker login -u nagesh143 -p ${Docker_pwd}"
                sh "docker push nagesh143/nodeapp:${DOCKER_TAG}"
            }
            }    
